@@ -1,0 +1,12 @@
+1- Download CodeIgniter (I got the 4.1.2 version on 5nov2013 first time use).
+2- Extract the files to a folder in /htdocs. Create apache VirtualHost ( i did http://ci.dev/) in httpd-vhosts.conf
+----- also update the windows hosts file to point to ci.dev in /htdocs/ci-project
+3- Add an encryption key in the config.php inside /application folder of our CI project.
+4- Create a mysql DB from phpMyAdmin etc, we'll used this in our database.php of CI project.
+
+5- Modifying autload.php 
+----Libraries: add 'database', and 'session' libraries to the $autoload['libraries'] array,
+------- this'll allow us to use database and sessions on all of our controller
+---- Helpers: are basically like libraries but there's not as much to them.
+------- we'll add the 'url' helper here.
+----!---- Its best to add libraries/helpers etc within the controllers if you need those in fewer areas.
