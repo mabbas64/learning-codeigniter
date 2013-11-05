@@ -20,5 +20,18 @@
 
 8- Create a Controller
 ---- save a file in /controllers folder of project as 'posts.php'. Controller names are plural
+----- Add an index function that fetches db data
 ------! Notice how the controller matches name of the db table  and 
 
+9- Print the database fetched data temporary by visiting http://ci.dev/index.php/posts
+---- in the url above, index.php is the main ci index.php and /posts is our controller 
+------- you'll see a blank array (as we dont have the DB tables filled yet) http://i.imgur.com/1tQnWUk.jpg
+
+10- Pouplate DB table 'posts' via PHPmyAdmin.
+----- http://i.imgur.com/MQ9ScJu.jpg
+------- Visit again http://ci.dev/index.php/posts
+--------- In browser you should see:   http://i.imgur.com/Zjfdljy.jpg  (doesn't have the inactive 3rd post)
+
+11- Creating a View
+---- create 'post_index.php' in /Views folder. It doesnt need a class, it'll contain all our HTML
+--!!-- inside the 'posts' controller, load the view and pass it the $data array there- which has DB data.

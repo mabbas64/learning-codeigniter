@@ -19,5 +19,8 @@ class Posts extends CI_Controller{
 		print_r($data['posts']);
 		echo "</pre>";
 
+		//3b- Load the 'post_index' View here
+		$this->load->view('post_index', $data);
+
 	}
 }
