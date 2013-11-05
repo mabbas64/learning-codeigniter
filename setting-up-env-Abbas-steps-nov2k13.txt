@@ -35,3 +35,15 @@
 11- Creating a View
 ---- create 'post_index.php' in /Views folder. It doesnt need a class, it'll contain all our HTML
 --!!-- inside the 'posts' controller, load the view and pass it the $data array there- which has DB data.
+
+12- Setting up Routes
+------ 1- change default_controller in routes.php from 'welcome' to 'posts', so we get rid of default 
+----------- CI message page on http://ci.dev/ , and it shud show the main posts controller, hence, view for now
+----- also,we don't want do http://ci.dev/index.php/posts to view the posts on localhost
+------- AFTER this step, we can access the posts and other pages without the /index.php/ in url
+--------- e.g. http://ci.dev/posts
+----- + http://ellislab.com/codeigniter/user-guide/general/urls.html
+-------- copy the code and paste it in ur CI project's .htaccess file. 
+----------  RewriteEngine on
+			RewriteCond $1 !^(index\.php|images|robots\.txt)
+			RewriteRule ^(.*)$ /index.php/$1 [L]
