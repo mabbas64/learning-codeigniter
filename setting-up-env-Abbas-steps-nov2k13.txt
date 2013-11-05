@@ -47,3 +47,25 @@
 ----------  RewriteEngine on
 			RewriteCond $1 !^(index\.php|images|robots\.txt)
 			RewriteRule ^(.*)$ /index.php/$1 [L]
+
+13- Active Record (Database):
+- We can also do selectors on multiple lines/steps, instead of the single line one like we did previously
+-- Single line: $this->db->select()->from('posts')->where('active',1)->order_by('date_added','desc')->limit($num,$start);
+-- Multiple lines:
+---- 	$this->db->select('*');
+		$this->db->from('posts');
+		$this->db->where('active',1);
+		$this->db->where(array('active'=>1)); # this is the same as line above it, it just allows more conditions in array
+		$this->db->order_by('date_added','desc');
+		$this->db->limit($num,$start);
+		// For Joining, we can do
+		$this->db->join('users','users.userID=posts.userID','left');
+		//alternatively, we can run a query by this also
+		$query=$this->db->get_where('posts'array('active'=>1),$num,$start);
+		# EVERYTHIG ABOVE THIS POINT IS JUST PREPARING THE QUERY. THE QUERY WILL ONLY RUN AFTER THE FOLLOWING Line		
+-
+- To run queries directly in CI, instead of using ActiveRecord, use:
+-- $query = $this->db->query("SELECT * FROM posts WHERE active=1 ORDER BY date_added desc LIMIT $num,$start");
+--- this is faster than using ActiveRecord also. 
+
+
