@@ -73,4 +73,10 @@
 
 15- create views for single-post, insert post, update post, etc
 --- create in /views , post.php , it'll be the single-post page
---- create in /views , new_post.php .. we'll add new posts from here. 
+--- create in /views , new_post.php .. we'll add new posts from here.  it'll look like this http://i.imgur.com/qFh9vLZ.jpg
+----- this form is accessible from http://ci.dev/posts/new_post  (note the /posts/ in URL represent the controller!)
+--- create in /views, edit_post.php , we'll edit posts from here. notice how we send the postID in the <form>'s action parameter.
+----- also notice, how the input fields on the form here have the 'value' parameters being populated by fetching previous data from DB.
+-------- u can access the edit_post page by: http://ci.dev/posts/edit_post/4 ...
+------------ this is how it looks in browser. http://i.imgur.com/0aEPkeg.jpg
+--- we dont need a view for deleting a post. the controller delets the post and redirects to homepage.

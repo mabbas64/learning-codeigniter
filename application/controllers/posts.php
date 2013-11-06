@@ -6,23 +6,24 @@ class Posts extends CI_Controller{
 
 	function __construct(){
 		parent::__construct();
-		$this->load->model('post'); // we have the construct, such that every func in this class, we're gonna load the post model
+		$this->load->model('post'); // we have the construct, such that within every func in this class, we're gonna load the post model
 	}
 
 	function index(){ //index means when we load the 'posts' controller, we'll go to this func first!
 		//grab the posts and display it on browser
 
 		//1- first load the model
-		//$this->load->model('post'); # this is no longer needed as we're loading the 'post.php' model in the construct (for all funcs to use)
+		//$this->load->model('post'); 
+		# this is no longer needed as we're loading the 'post.php' model in the construct (for all funcs to use)
 
 		//2- create an array data, it'll hold all the variables/data/everything that the view is going to use.
 		$data['posts'] =  $this->post->get_posts(); 
 							// we've loaded the model 'post', we're using the post-model and calling its func get_posts()
 		//3-print the array temporarily here. access it by doing http://ci.dev/index.php/posts
 															//  index.php is the main ci index.php and /posts is our controller
-		echo "<pre>"; 
-		print_r($data['posts']);
-		echo "</pre>";
+		//echo "<pre>"; 
+		//print_r($data['posts']);
+		//echo "</pre>";
 		//3b- Load the 'post_index' View here
 		$this->load->view('post_index', $data);
 	}

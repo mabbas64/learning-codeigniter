@@ -19,7 +19,7 @@
 </style>
 <body>
 <div id="wrapper">	
-	<h1>Abbas' CI Blog - first project</h1>
+	<h1>Abbas' CI Blog - first project | <a href="<?=base_url()?>posts/new_post/">Add Post></a> </h1>
 	<?php 
 	if(!isset($posts))
 		echo '<p>There are currently NO posts on abbas blog</p>';
@@ -27,7 +27,12 @@
 	{
 		foreach($posts as $row){
 			?>
-			 	<h2><a href="<?=base_url()?>posts/post/<?=$row["postID"]?>"><?=$row['title']?></a></h2><p><?=$row['post']?></p><hr /> 
+			 	<h2>
+			 		<a href="<?=base_url()?>posts/post/<?=$row["postID"]?>"><?=$row['title']?></a>
+			 		<a href="<?=base_url()?>posts/edit_post/<?=$row['postID']?>">Edit</a>
+			 		<a href="<?=base_url()?>posts/delete_post/<?=$row['postID']?>">Delete</a>
+			 	</h2>
+			 	<p><?=$row['post']?></p><hr /> 
 			<?php
 		}
 	}
