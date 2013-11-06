@@ -19,17 +19,17 @@
 </style>
 <body>
 <div id="wrapper">	
-	<h1>Abbas' CI Blog - first project</h1>
+	<h1>Abbas' CI Blog :: SINGLE POST  </h1>
 	<?php 
-	if(!isset($posts))
-		echo '<p>There are currently NO posts on abbas blog</p>';
+	if(!isset($post))
+		echo '<p>There are  NO posts with this PostID on abbas blog</p>';
 	else
 	{
-		foreach($posts as $row){
+		//foreach($post as $row){
 			?>
-			 	<h2><a href="<?=base_url()?>posts/post/<?=$row["postID"]?>"><?=$row['title']?></a></h2><p><?=$row['post']?></p><hr /> 
+			 	<h2><a href="<?=base_url()?>posts/post/<?=$post["postID"]?>"><?=$post['title']?></a></h2><p><?=$post['post']?></p><hr /> 
 			<?php
-		}
+		//}
 	}
 	?>
 

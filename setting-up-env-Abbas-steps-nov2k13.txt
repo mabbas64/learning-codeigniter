@@ -68,4 +68,9 @@
 -- $query = $this->db->query("SELECT * FROM posts WHERE active=1 ORDER BY date_added desc LIMIT $num,$start");
 --- this is faster than using ActiveRecord also. 
 
+14- Creating the (blog)'Post' MVC -video6-
+- Further refined the Add, Insert, Update and Delete functions in the 'post' model and 'posts' Controller.
 
+15- create views for single-post, insert post, update post, etc
+--- create in /views , post.php , it'll be the single-post page
+--- create in /views , new_post.php .. we'll add new posts from here. 
