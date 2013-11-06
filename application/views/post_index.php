@@ -35,6 +35,10 @@
 			 	<p><?=$row['post']?></p><hr /> 
 			<?php
 		}
+		//add pagination here
+		?>
+		<?=$pages?>
+		<?php
 	}
 	?>
 

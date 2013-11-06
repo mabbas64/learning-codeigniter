@@ -80,3 +80,5 @@
 -------- u can access the edit_post page by: http://ci.dev/posts/edit_post/4 ...
 ------------ this is how it looks in browser. http://i.imgur.com/0aEPkeg.jpg
 --- we dont need a view for deleting a post. the controller delets the post and redirects to homepage.
+
+16- Pagination   -video 7-

@@ -33,6 +33,13 @@ class Post extends CI_Model{
 
 	}
 
+	function get_posts_count(){
+		$this->db->select()->from('posts')->where('active',1);
+		$query = $this->db->get();
+		return $query->num_rows();
+
+	}
+
 	function insert_post($data){
 		//will insert a new post in 'posts' table.
 		/*$data = array(
