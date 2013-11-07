@@ -1,24 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head><title>CI Blog by Abbas</title></head>
-<style>
-	#wrapper{
-		margin: 0 auto;
-		width: 960px;
-		border: 1px solid #0d0d0d;
-		padding: 3px;
-	}
-	h1{
-		background: #2d2d2d;
-		padding: 3px;
-		font-family: Arial, Verdana;
-		font-size: 22px;
-		color: #dfdfdf;
-	}
-
-</style>
-<body>
-<div id="wrapper">	
+<?php if($this->session->userdata('userID')){  ?>
+		You're logged in!
+		<p><a href="<?=base_url()?>users/logout">Logout</a></p>
+<?php }
+ 	  else{ ?>
+		<p><a href="<?=base_url()?>users/login">Login</a></p>
+<?php }
+?>
 	<h1>Abbas' CI Blog - first project | <a href="<?=base_url()?>posts/new_post/">Add Post></a> </h1>
 	<?php 
 	if(!isset($posts))
@@ -42,6 +29,3 @@
 	}
 	?>
 
-</div>
-</body>
-</html>

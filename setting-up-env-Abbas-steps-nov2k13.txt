@@ -82,3 +82,23 @@
 --- we dont need a view for deleting a post. the controller delets the post and redirects to homepage.
 
 16- Pagination   -video 7-
+-- We'll use the 'pagination' library of CI for pagination.
+---- we use load the pagination library in posts Contoller's index function.
+------ full detail of how each param of this libary works > http://ellislab.com/codeigniter/user-guide/libraries/pagination.html
+-- We added a get_posts_count function to the post Model. this is required for the pagination variable inside Posts Controller's index func
+
+17- Users MVC   -video 8-
+-- Add a table 'users' to the project database. http://i.imgur.com/gLpkm4P.jpg
+-- Create a 'user.php' Model for users. notice how the name is singular since its a Model.
+----- Add a create_user and login func to the user Model.
+-- Create 'users.php' Controller for Users.
+----- Add a login func, logout func.
+------- Used sessions in login/logout.
+--!!----- Read more about Sessions Class on CI site user_guide. much more info on how to update sessions etc.
+-**-- Break the single html pages to header/footer/page-name, for clean look and easy maintainability.
+
+-- Add a Login View for Users. under 'login.php'
+---- Login page must be at > http://ci.dev/users/login  or locahost/ci_project, depending on ur VirtualHost settings
+------- try logging with a wrong user/pass , and then add a user/pass in db and login with correct credentials. http://i.imgur.com/fpTUZf8.jpg
+--------- MAKE SURE: when adding a user manually, convert the password to SHA1 before saving it in DB. because login function in Controller
+------------ converts the login form password to SHA before matching it with DB.

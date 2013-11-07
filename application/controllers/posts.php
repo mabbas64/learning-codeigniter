@@ -41,7 +41,7 @@ class Posts extends CI_Controller{
 	function post($postID){
 		//$postID variable will be received from the _GET variable, which in CI doesnt have ?id= , but rater  post/id/. prettied up with slashes.
 		$data['post']= $this->post->get_post($postID);
-		$this->load->view('post',$data); // pass it on the single-posts' data that we got from get_post() DB model in previous line
+		$this->load->view('post',$data); // pass it on the single-posts' data that we got from get_post() func of 'post' Model in previous line
 	}
 
 	function new_post(){
