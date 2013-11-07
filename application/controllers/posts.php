@@ -6,7 +6,7 @@ class Posts extends CI_Controller{
 
 	function __construct(){
 		parent::__construct();
-		$this->load->model('post'); // we have the construct, such that within every func in this class, we're gonna load the post model
+		$this->load->model('post'); // we have the construct such that, within every func in this class, we're gonna load the post model
 	}
 
 	function index($start=0){ //index means when we load the 'posts' controller, we'll go to this func first!
@@ -46,6 +46,10 @@ class Posts extends CI_Controller{
 
 	function new_post(){
 		//this new post data will come from a form, via _POST
+		$user_type = $this->session->userdata('user_type');
+		if($user_type != "admin" && $user_type != "author")
+			redirect(base_url().'users/login'); //only admin and author types can add new posts
+
 		if($_POST){
 			$data = array(
 					'title' => $_POST['title'],
@@ -60,7 +64,30 @@ class Posts extends CI_Controller{
 		}
 	}
 
+	function correct_permissions($required){
+		//returns whether the current logged in user has the right permissions to perform the specific task
+		$user_type = $this->session->userdata('user_type');
+		if($required=="user"){
+			if($user_type){
+				return true;
+			}
+		}
+		else if($required=="author"){
+			if($user_type == "admin" || $user_type == "author"){
+				return true;
+			}
+		}
+		else if($required=="admin"){
+			if($user_type=="admin"){
+				return true;
+			}
+		}
+	}
+
 	function edit_post($postID){
+		if(!$this->correct_permissions('author'))
+			redirect(base_url().'users/login'); //only admin and author types can edit posts
+
 		$data['success'] = 0;
 		if($_POST){
 			$data_post = array(
@@ -76,6 +103,10 @@ class Posts extends CI_Controller{
 	}
 
 	function delete_post($postID){
+		$user_type = $this->session->userdata('user_type');
+		if($user_type != "admin" && $user_type != "author") // can also replace this user permission check with the same code as that in edit_post func
+			redirect(base_url().'users/login'); //only admin and author types can delete posts
+
 		$this->post->delete_post($postID);
 		redirect(base_url());
 	}

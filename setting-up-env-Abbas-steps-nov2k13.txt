@@ -102,3 +102,13 @@
 ------- try logging with a wrong user/pass , and then add a user/pass in db and login with correct credentials. http://i.imgur.com/fpTUZf8.jpg
 --------- MAKE SURE: when adding a user manually, convert the password to SHA1 before saving it in DB. because login function in Controller
 ------------ converts the login form password to SHA before matching it with DB.
+
+-- Add user-type combo-box into the login View.
+----- Update the 'users' Controller and Model with the user_type variables too. so the user can only login if his user/pass/user_type all match
+
+18- Putting Checks on which users can add new Posts.
+---- Update the posts Controller's add / edit / delete funcs, 
+------- check if the current session user has the right user_type  before allowing him to add/edit/del posts. otherwise redirect to home
+---------- its better create a func within the controller that we pass a required-user-type param to, and that func, in turn,
+------------- checks whether the current user is allowed to perform that task or not (see the edit_post func in 'posts' Controller)
+---------------- much better than copy pasting the same user-permissions code in all functions like edit/add/delete blog-posts.

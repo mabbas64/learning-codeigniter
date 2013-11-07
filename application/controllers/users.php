@@ -8,7 +8,8 @@ class Users extends CI_Controller{
 			$this->load->model('user');
 			$username = $this->input->post('username',true); // this is same are $username = $_POST['username'];
 			$password = $this->input->post('password',true);
-			$user = $this->user->login($username,$password); // using the 'user' Model and its func 'login'
+			$type = $this->input->post('user_type',true);
+			$user = $this->user->login($username,$password,$type); // using the 'user' Model and its func 'login'
 			if(!$user){ // i.e. if no results are returned
 				$data['error'] = 1;
 			}		
@@ -23,7 +24,7 @@ class Users extends CI_Controller{
 
 		// show login form if no _POST was set or login was incorrect .
 		$this->load->view('header');
-		$this->load->view('login',$data);
+		$this->load->view('login',$data); //show it can display the 'wrong user/pass msg' after failed attempt to login
 		$this->load->view('footer');
 	}
 

@@ -1,6 +1,7 @@
 <?php if($this->session->userdata('userID')){  ?>
 		You're logged in!
 		<p><a href="<?=base_url()?>users/logout">Logout</a></p>
+		<p>User Type: <?=$this->session->userdata('user_type')?></p>
 <?php }
  	  else{ ?>
 		<p><a href="<?=base_url()?>users/login">Login</a></p>
