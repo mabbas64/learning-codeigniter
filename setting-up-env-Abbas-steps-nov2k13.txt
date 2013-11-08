@@ -128,3 +128,17 @@
 ------- we replace the <select> combo box with form_dropdown(), to which we passed an array of options.
 --++- UPDATE the user's DB table and set userID to auto-increment. otherwise the registration form has issues registering new users
 -------- http://i.imgur.com/55cIu0N.jpg
+
+20- Form Validation   -video 11-
+-- Add an email input field and a 2nd password box in the register_user view.
+-- Add the validation we're going to perform on our registeration form, into users controller's register func (users/register)
+---- we use arrays within arrays for specifying the validation rules on each field in the form
+-------- e.g. this is how i did it  > http://i.imgur.com/gFHcyue.jpg
+---- load the form_validation library withing the users controller's register() func
+--**-- Newbie mistakes: Make sure you're passing the $data array to the view when loading the view. You'll get an error if you try to
+--------- use any $data etc variable in the view and didn't actually pass the variable to the view in the first place!
+--PRO TIP:-- when a form is submitted and validation errors are shown, the user will have to re-enter the form fields again. To avoid this,
+----------------  its better to specify the input field on the view, such that, it's values => set_value('field_name')
+-------------------- this way, previous values are reloaded into the fields. e.g. http://i.imgur.com/OjSGBls.jpg
+---------------------!--  in order to make the dropdown box remember previuos value/option, we need to add an id to it in the view, view $js param
+------------------------------ AND change the 'default value' parameter for form_dropdown to set_value('#id of the same dropdown here');

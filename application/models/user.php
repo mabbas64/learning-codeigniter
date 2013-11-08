@@ -4,6 +4,7 @@ class User extends CI_Model{
 
 	function create_user($data){
 		$this->db->insert('users',$data);
+		#todo, this must reutn userID, NOT the username! for the session. needs to fix! abbas
 		return $data['username']; //return this so we can creat a session for the newly registered user and log him in automatically
 	}
 

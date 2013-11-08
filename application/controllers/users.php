@@ -35,22 +35,61 @@ class Users extends CI_Controller{
 
 	function register(){
 		//registers new User
+		$data['errors'] = []; //create empty aray to avoid errors if no _POST data is receieved and form is to be shown (which expects this array anyway)
 		if($_POST){
-			$data = array(
+
+			//form validation's configuration
+			$config = array(
+					array(
+							'field' => 'username',
+							'label' => 'Username',
+							'rules' => 'trim|required|min_length[3]|is_unique[users.username]'
+						),
+					array(
+							'field' => 'password',
+							'label' => 'Password',
+							'rules' => 'trim|required|min_length[5]'
+						),
+					array(
+							'field' => 'password2',
+							'label' => 'Confirm Password',
+							'rules' => 'trim|required|min_length[5]|matches[password]'
+						),
+					array(
+							'field' => 'user_type',
+							'label' => 'User Type',
+							'rules' => 'required'
+						),
+					array(
+							'field' => 'email',
+							'label' => 'Email',
+							'rules' => 'trim|required|is_unique[users.email]|valid_email'
+						)
+				);
+
+			$this->load->library('form_validation'); //we could put this in autoload, but we only use this lib in a few pages, so we load it manually here
+			$this->form_validation->set_rules($config); //set the validation of rules
+			if($this->form_validation->run() == FALSE){
+				//if errors in validation
+				$data['errors']=validation_errors();
+			}
+			else{ //validated, save it into DB!
+				$data = array(
 					'username' => $_POST['username'],
 					'password' => sha1($_POST['password']),
 					'user_type' => $_POST['user_type']
 				);
-			$this->load->model('user');
-			$userid = $this->user->create_user($data);
-			$this->session->set_userdata('userID',$userid);
-			$this->session->set_userdata('user_type',$_POST['user_type']);
-			redirect(base_url().'posts'); //redirect them to the posts controller, i.e. our main page
+				$this->load->model('user');
+				$userid = $this->user->create_user($data);
+				$this->session->set_userdata('userID',$userid); //login the newly registered user by settign session data with their userID
+				$this->session->set_userdata('user_type',$_POST['user_type']);
+				redirect(base_url().'posts'); //redirect them to the posts controller, i.e. our main page
+			}			
 		}
 		//otherwise show the registration form
-		$this->load->helper('form');
+		$this->load->helper('form'); // the CodeIgniter form Helper is used in register_user view's form
 		$this->load->view('header');
-		$this->load->view('register_user');
+		$this->load->view('register_user',$data);
 		$this->load->view('footer');
 	}
 

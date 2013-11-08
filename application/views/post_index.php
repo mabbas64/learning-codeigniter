@@ -4,7 +4,7 @@
 		<p>User Type: <?=$this->session->userdata('user_type')?></p>
 <?php }
  	  else{ ?>
-		<p><a href="<?=base_url()?>users/login">Login</a></p>
+		<p><a href="<?=base_url()?>users/login">Login</a> / <a href="<?=base_url()?>users/register">Register</a></p>
 <?php }
 ?>
 	<h1>Abbas' CI Blog - first project | <a href="<?=base_url()?>posts/new_post/">Add Post></a> </h1>
