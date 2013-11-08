@@ -33,5 +33,26 @@ class Users extends CI_Controller{
 		redirect(base_url().'posts');
 	}
 
+	function register(){
+		//registers new User
+		if($_POST){
+			$data = array(
+					'username' => $_POST['username'],
+					'password' => sha1($_POST['password']),
+					'user_type' => $_POST['user_type']
+				);
+			$this->load->model('user');
+			$userid = $this->user->create_user($data);
+			$this->session->set_userdata('userID',$userid);
+			$this->session->set_userdata('user_type',$_POST['user_type']);
+			redirect(base_url().'posts'); //redirect them to the posts controller, i.e. our main page
+		}
+		//otherwise show the registration form
+		$this->load->helper('form');
+		$this->load->view('header');
+		$this->load->view('register_user');
+		$this->load->view('footer');
+	}
+
 
 }

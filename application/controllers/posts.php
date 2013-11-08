@@ -68,12 +68,12 @@ class Posts extends CI_Controller{
 		//returns whether the current logged in user has the right permissions to perform the specific task
 		$user_type = $this->session->userdata('user_type');
 		if($required=="user"){
-			if($user_type){
+			if($user_type){ // lowest type of user, so any user , if logged in, qualifies
 				return true;
 			}
 		}
 		else if($required=="author"){
-			if($user_type == "admin" || $user_type == "author"){
+			if($user_type == "admin" || $user_type == "author"){ //an author can edit, but admin is higher level so he also qualifies
 				return true;
 			}
 		}

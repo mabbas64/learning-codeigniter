@@ -4,6 +4,7 @@ class User extends CI_Model{
 
 	function create_user($data){
 		$this->db->insert('users',$data);
+		return $data['username']; //return this so we can creat a session for the newly registered user and log him in automatically
 	}
 
 	function login($username,$password,$type){

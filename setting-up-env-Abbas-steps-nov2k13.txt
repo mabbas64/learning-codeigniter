@@ -112,3 +112,19 @@
 ---------- its better create a func within the controller that we pass a required-user-type param to, and that func, in turn,
 ------------- checks whether the current user is allowed to perform that task or not (see the edit_post func in 'posts' Controller)
 ---------------- much better than copy pasting the same user-permissions code in all functions like edit/add/delete blog-posts.
+
+19- Setting up Forms    -video10-
+--- in the Users Controller, create the 'register' function that'll receive the data from registration form via _POST
+------ within the 'register' function, load the 'user' model, so can talk to the DB
+--------- then,  login the user after registering him. if no _POST data received, just show the registration form view.
+------------- we MUST load the 'form' Helper here ^
+-----!!---------- Read more about Form Helper on CI's user guide > http://ellislab.com/codeigniter/user-guide/helpers/form_helper.html
+
+--- Create view 'user_register' , this'll contain our form. We'll use CI's form Helper here.
+------- we replace the <form> and </form> tags with the form helper's form_open() and form_close() functions.
+------- we replace the <input type="submit"> button with from_submit('','Register');
+------- we replace <input type="text" name="username" /> with form_input($data_form); and $data_form is an array that contains id, name, style
+---------- etc of the input field we want to create. for example. http://i.imgur.com/PqW9eMQ.jpg
+------- we replace the <select> combo box with form_dropdown(), to which we passed an array of options.
+--++- UPDATE the user's DB table and set userID to auto-increment. otherwise the registration form has issues registering new users
+-------- http://i.imgur.com/55cIu0N.jpg
