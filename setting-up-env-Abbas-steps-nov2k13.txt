@@ -160,3 +160,10 @@
 -- Load the upload page via http://di.dev/upload -- just the controller. as the view loads in its index func
 ----- uploading a non allowed file type error: http://i.imgur.com/oYtxCgv.jpg
 ----- upload successful > http://i.imgur.com/wOlQoQG.jpg
+
+22- Resizing Images  -video13-
+-- We'll use the image_lib library to resize images within the 'uploads' controller. Add resize() func to that controller
+---- we then use the newly created resize() func of this uploads library by passing it the uploaded file's path, and the file itself
+------- e.g. the file just uploaded, we see its information printed out. we use the info from the same array to pass to resize()
+----------- http://i.imgur.com/7tdZfqQ.jpg
+---- you can see the new thumbnail in /uploads folder with the -thumb in the file name.

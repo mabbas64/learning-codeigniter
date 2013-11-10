@@ -31,10 +31,27 @@ class Upload extends CI_Controller{
 		}
 		else{ // otherwise we want to let them know that it uploaded. we show all of he info about the uploaded file
 			$data = array('upload_data' => $this->upload->data());
+			// RESIZE image
+			$this->resize($data['upload_data']['full_path'], $data['upload_data']['file_name']); //pass the uploaded file's path and the file itself
+																				// u can see the upload_data info http://i.imgur.com/7tdZfqQ.jpg
 			$this->load->view('upload_success', $data);
 
 		}
 
+	}
+
+	function resize($path,$file){
+		//configuraton for the image_lib library
+		$config['image_library'] = 'gd2';
+		$config['source_image'] = $path;
+		$config['create_thumb'] = TRUE;
+		$config['maintain_ratio'] = TRUE;
+		$config['width'] = 150; //this is max_width, wont stretch smaller images to this size. will only resize
+		$config['height'] = 75;
+		$config['new_image'] = './uploads/'.$file;
+
+		$this->load->library('image_lib',$config);
+		$this->image_lib->resize();
 	}
 
 }
