@@ -115,7 +115,7 @@
 
 19- Setting up Forms    -video10-
 --- in the Users Controller, create the 'register' function that'll receive the data from registration form via _POST
------- within the 'register' function, load the 'user' model, so can talk to the DB
+------ within the 'register' function, load the 'user' model, so we can talk to the DB
 --------- then,  login the user after registering him. if no _POST data received, just show the registration form view.
 ------------- we MUST load the 'form' Helper here ^
 -----!!---------- Read more about Form Helper on CI's user guide > http://ellislab.com/codeigniter/user-guide/helpers/form_helper.html
@@ -135,6 +135,7 @@
 ---- we use arrays within arrays for specifying the validation rules on each field in the form
 -------- e.g. this is how i did it  > http://i.imgur.com/gFHcyue.jpg
 ---- load the form_validation library withing the users controller's register() func
+---------- more about CI form validation library here. http://ellislab.com/codeigniter/user-guide/libraries/form_validation.html
 --**-- Newbie mistakes: Make sure you're passing the $data array to the view when loading the view. You'll get an error if you try to
 --------- use any $data etc variable in the view and didn't actually pass the variable to the view in the first place!
 --PRO TIP:-- when a form is submitted and validation errors are shown, the user will have to re-enter the form fields again. To avoid this,
@@ -142,3 +143,20 @@
 -------------------- this way, previous values are reloaded into the fields. e.g. http://i.imgur.com/OjSGBls.jpg
 ---------------------!--  in order to make the dropdown box remember previuos value/option, we need to add an id to it in the view, view $js param
 ------------------------------ AND change the 'default value' parameter for form_dropdown to set_value('#id of the same dropdown here');
+
+21- Uploading Files - video 12-
+-- Create an Upload Controller in /controllers as upload.php.
+----- In the 'upload' Controller's construct, load the 'form' Helper.  we'll also need 'url' helper, but we're already autloading it
+----- in the 'index' function of upload controller, load the view 'upload_form', and load an array 'error' to it on the fly.
+----- create a 'do_upload()' func in the controller, this is where we'll do the uploading.
+-------- This func loads AFTER a user tries to upload a file.
+-------- we'll use the 'upload' library of CI in this do_upload func. but first we need to specify the configs for it
+---------------- read more about the upload librayr here > http://ellislab.com/codeigniter/user-guide/libraries/file_uploading.html
+----------- create a folder 'upload' in the root of ci's directory (not in the applicaiton sub directory)
+-- Create a View called 'upload_form.php'
+----- echo any errors that occured during upload
+----- Create a Multipart form in the view. the form _POSTs the data to the upload controller's do_upload() func
+-- Create the upload_success.php view, this shows if a file uploaded succesffuly and any file information 
+-- Load the upload page via http://di.dev/upload -- just the controller. as the view loads in its index func
+----- uploading a non allowed file type error: http://i.imgur.com/oYtxCgv.jpg
+----- upload successful > http://i.imgur.com/wOlQoQG.jpg
