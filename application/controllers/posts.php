@@ -45,6 +45,20 @@ class Posts extends CI_Controller{
 		$data['comments'] = $this->comment->get_comments($postID);
 		$data['post']= $this->post->get_post($postID);
 
+		//captcha
+		$this->load->helper('captcha');
+		$vals = array(
+				'img_path' => './captcha/',
+				'img_url' => base_url().'captcha/',
+				'width' => 150,
+				'height' => 30
+			);
+
+		$cap = create_captcha($vals);
+		$this->session->set_userdata('captcha', $cap['word']); //the word that captcha will display. we need to save it in session for comparing later on
+		$data['captcha'] = $cap['image']; //the actual image, we'll display on page
+
+
 		$this->load->helper('form');
 		$this->load->view('header');
 		$this->load->view('post',$data); // pass it on the single-posts' data that we got from get_post() func of 'post' Model in previous line

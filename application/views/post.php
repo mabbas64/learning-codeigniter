@@ -52,6 +52,11 @@
 		);
 		echo form_textarea($data_commentfield); ?>
 		<br />
+		<p>Captcha Code: <?=$captcha?><br /><?php
+			$data_captcha_inputfield = array(
+				'name' => 'captcha'
+			);
+			echo form_input($data_captcha_inputfield); ?>
 		<p><?php echo form_submit('','Add Comment'); ?></p>
 	<?php echo form_close(); ?>
 

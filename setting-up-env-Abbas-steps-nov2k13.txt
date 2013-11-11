@@ -187,3 +187,15 @@
 ----- Add a comment-form to the end of 'post' view, right after where comments are displayed.
 ----- on the posts Controller, on the post() func, we want to load the comment model and fetch the comments.
 -------- make sure to load the 'form' helper within that post() func in the controller, before loadin the view. this is for comments form.
+-- now load the single post page and u shud see the comment form. http://ci.dev/posts/post/9
+----- if u try to add comment without having logged in, it shud show the login form. otherwise it shud add the comment and display it on same page
+
+
+25- Captcha in comments form:
+---- create a folder 'captcha' in ci directory (i.e. outside of the applications/ dir)
+---- Update the posts controller's post() func. we'll use the 'captcha' helper of CI for this purpose.
+---- Update the post view, just output the $captcha varialbe we sent from posts controller's post() func previously
+--!!--- If in the browser, the captcha image doens't display, but u can see the images being generated in /captcha folder
+---------- make sure to add '|captcha|' to .htaccess in the codeIgniter's root http://i.imgur.com/y754lwy.jpg
+---- Update the comments Controllers's add_comment() so it compares captcha image to the captcha text field input.
+-------- now only captcha correct comments will be stored. like http://i.imgur.com/loWG8eX.jpg
