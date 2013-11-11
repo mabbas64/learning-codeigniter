@@ -170,10 +170,20 @@
 
 23- Mailing-List creation -video 14-
 -- Create an 'emails' controller that'll send out the emails to all users. We'll use the 'email' library of CI for this
------ we should add some config and then initialize theemail library, so we can send out  html emails , which utilise <strong> etc like tags
+----- we should add some config and then initialize the email library, so we can send out  html emails , which utilise <strong> etc like tags
 -- Create a new function get_emails within the user model that'll fetch all users' email address and pass it to where we need em
 ----- in this case, the emails controller will rquest them for sending out the news eltter to the mailing list.
 -- Now to send the email/newsletter, go to http://ci.dev/emails/email (or localhost/emails/email)
------- it wont work from localhsot, but while sending the emails, u can see in debugger options how the mail have been sent
+------ it wont work from localhsot, but while sending the emails, u can see with email->print_debugger   how the mail have been sent/look like
 ----------- > http://i.imgur.com/PX1SC7T.jpg
 ---!!- CHECK the CI email library USER guide for more info. http://ellislab.com/codeigniter/user-guide/libraries/email.html
+
+24- Comments MVC  - vid 14 - 
+-- Add the comments Controller. and within it, the add_comment func
+-- Add a 'comments' table in DB with this structure > http://i.imgur.com/lehVIyI.jpg
+-- Create the comment model, then add the add_comment and get_comments func
+----- in the get_comments, we do a left join to get the user name from the users table along with comments from comments table
+-- Now, update the 'post' view and posts Controller . so the post view displays the comments
+----- Add a comment-form to the end of 'post' view, right after where comments are displayed.
+----- on the posts Controller, on the post() func, we want to load the comment model and fetch the comments.
+-------- make sure to load the 'form' helper within that post() func in the controller, before loadin the view. this is for comments form.

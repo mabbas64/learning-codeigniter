@@ -31,7 +31,29 @@
 			<?php
 		//}
 	}
-	?>
+	?><hr />
+	<!-- Comments section -->
+	<h2>Comments</h2>
+	<?php if(count($comments) > 0){
+			foreach($comments as $row){ ?>
+		<p><strong><?=$row['username']?></strong> said at <?=$row['date_added']?><br /><?=$row['comment']?><br />
+		<hr />
+	<?php }
+		} 
+		else{
+
+				echo 'There are currently no comments!';
+			}
+		?>
+	<!-- comment form -->
+	<?php echo form_open(base_url().'comments/add_comment/'.$post['postID']); 
+		$data_commentfield = array(
+			'name' => 'comment'
+		);
+		echo form_textarea($data_commentfield); ?>
+		<br />
+		<p><?php echo form_submit('','Add Comment'); ?></p>
+	<?php echo form_close(); ?>
 
 </div>
 </body>
