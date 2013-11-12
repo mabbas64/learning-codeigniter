@@ -199,3 +199,20 @@
 ---------- make sure to add '|captcha|' to .htaccess in the codeIgniter's root http://i.imgur.com/y754lwy.jpg
 ---- Update the comments Controllers's add_comment() so it compares captcha image to the captcha text field input.
 -------- now only captcha correct comments will be stored. like http://i.imgur.com/loWG8eX.jpg
+
+26- Smileys - vid 16 -
+-- download the smileys zip package from CodeIgniter's smileys page (on its user-guide page)
+-- extract and put the /smileys folder in the main /ci project directory (one level above the /application directory)
+-- in the posts Controller's post() func, load the 'smiley' helper and the 'table' library.
+----- the table library will help us sort all these icons
+-------- we generate a table that has all the smileys added into each cell, very neat! ;p
+-- Update the post.php View , we give the comment text_area an ID, the same id we used previously with the table library to
+------ attach the smileys to this text area element (in posts Controller's post() func).
+---- Then we echo smiley_js() in the post.php View, it'll add javascript that when we click a smiley, it'll add it to comments text area.
+------ Then we echo out the smiley_table variable, that we passed to this post.php view from posts.php controller previoulsy.
+--!!--- If in the browser, the smiley images doens't display,  
+---------- make sure to add '|captcha|' to .htaccess in the codeIgniter's root http://i.imgur.com/y754lwy.jpg
+---- smileys can now be added to comment fields on any http://ci.dev/posts/post/9 like pages. http://i.imgur.com/WRWQpBc.jpg
+-- BUT smileys wont appear in saved comments. they'll only appear as :hug: :kiss: etc.
+---- We need to parse_smileys() these  :hug: like codes before printing out the comments . withing post.php View.
+------- and now comments will appear in printed out comments http://i.imgur.com/vdwgauq.jpg

@@ -36,7 +36,12 @@
 	<h2>Comments</h2>
 	<?php if(count($comments) > 0){
 			foreach($comments as $row){ ?>
-		<p><strong><?=$row['username']?></strong> said at <?=$row['date_added']?><br /><?=$row['comment']?><br />
+		<p><strong><?=$row['username']?></strong> said at <?=$row['date_added']?><br />
+			<?php 
+				$comment_text = $row['comment'];
+				$comment_text = parse_smileys($comment_text, base_url().'smileys'); // location of smileys folder in 2nd argument
+				echo $comment_text.'<br />';
+			?>
 		<hr />
 	<?php }
 		} 
@@ -45,10 +50,14 @@
 				echo 'There are currently no comments!';
 			}
 		?>
+
 	<!-- comment form -->
+	<?php echo smiley_js(); ?>
+	<?php echo $smiley_table; ?>
 	<?php echo form_open(base_url().'comments/add_comment/'.$post['postID']); 
 		$data_commentfield = array(
-			'name' => 'comment'
+			'name' => 'comment',
+			'id' => 'comment'
 		);
 		echo form_textarea($data_commentfield); ?>
 		<br />

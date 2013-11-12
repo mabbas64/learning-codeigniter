@@ -58,6 +58,12 @@ class Posts extends CI_Controller{
 		$this->session->set_userdata('captcha', $cap['word']); //the word that captcha will display. we need to save it in session for comparing later on
 		$data['captcha'] = $cap['image']; //the actual image, we'll display on page
 
+		$this->load->helper('smiley');
+		$this->load->library('table');
+
+		$image_array = get_clickable_smileys(base_url().'smileys/','comment'); // (location of smileys, #id of element we want to attach smileys to)
+		$col_array = $this->table->make_columns($image_array, 8); //we want 8 smileys per row. The table library will sort it us for us auto :)
+		$data['smiley_table'] = $this->table->generate($col_array);
 
 		$this->load->helper('form');
 		$this->load->view('header');
