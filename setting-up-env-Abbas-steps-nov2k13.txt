@@ -216,3 +216,21 @@
 -- BUT smileys wont appear in saved comments. they'll only appear as :hug: :kiss: etc.
 ---- We need to parse_smileys() these  :hug: like codes before printing out the comments . withing post.php View.
 ------- and now comments will appear in printed out comments http://i.imgur.com/vdwgauq.jpg
+
+27- Calendar - vid 17 -
+-- Create a controller called Calendar.
+-- we'll use the CI 'calendar' library for this purpose. http://ellislab.com/codeigniter/user-guide/libraries/calendar.html
+----- we also add the $year and $month argments to our index() func in Calendar class because,
+-------- this way we can make the prev/next links on the calendar call the SAME controller->func to tell it whether
+------------ to generate and display previous or next month's calendar.
+---- after adding $month, $year argumetns to the index() func, that we use in the $this->calendar->generate() func, now we
+-------- also pass some $data, this way we can make specific days in the calendars specific URLs
+-------- So, we just add a data array, and we specify the day and the link we want to add to that specific day.
+-- We can also use other templates for the calendar - instead of using the default styling.
+------ lets copy the code from "creating a calendar template" section of the "Calendar library" user_guide page of CI.
+------------ http://i.imgur.com/O9xxdI4.jpg
+----------------- we save the copied template code as $prefs['template'] in the index() func of same Controller.
+----------------------- this allows us to modify the styling of the calenda significaly. we can add css classes etc too
+-------------------------- I just added the #dfdfdf background for calendar top most row!
+---- we access this calendar controller by > http://ci.dev/calendar/index/ ... didnt really create  a view for this 
+
