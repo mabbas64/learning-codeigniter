@@ -1,3 +1,5 @@
+Tutorial source: https://tutsplus.com/course/codeigniter-essentials/ (video tutorial)
+
 1- Download CodeIgniter (I got the 4.1.2 version on 5nov2013 first time use).
 2- Extract the files to a folder in /htdocs. Create apache VirtualHost ( i did http://ci.dev/) in httpd-vhosts.conf
 ----- also update the windows hosts file to point to ci.dev in /htdocs/ci-project
@@ -233,4 +235,22 @@
 ----------------------- this allows us to modify the styling of the calenda significaly. we can add css classes etc too
 -------------------------- I just added the #dfdfdf background for calendar top most row!
 ---- we access this calendar controller by > http://ci.dev/calendar/index/ ... didnt really create  a view for this 
+
+
+28- Shopping Cart - vid 18 -  18 nov 2k13
+-- create a shopping Controller
+----- in this Controller's index func, we need to make sure 'form' helper is load, the cart library is loaded 
+-------- and the view is loaded also. we dont need to pass it any data because all cart data is in Session
+-- next we create a add_variables() func in the controller, here we'll laod he default info into the sopping cart
+----- we'll put some default products into the Session. because we're not creating a complete catalog in this tut 
+-- then create the shopping view as shopping.php in /views
+----- copy this page's HTML from codeigniter's user guy -> cart class page > http://ellislab.com/codeigniter/user-guide/libraries/cart.html
+----------- one thing to update in that HTML is the path to controller on line 1 !
+----------- Withing this html code, we've a form ... we perform a foreach and withing that print out a form
+--------------- this form has the quanity and product-options (optional) input fields. we also echo out the price
+--!- CAll the add_variables func once to add the products (to session , for this example) by
+---------- viewing http://ci.dev/shopping/add_variables
+-- then Access this view on  http://ci.dev/shopping (or localhost/ci_project/shopping)  http://i.imgur.com/SmGTw5a.jpg
+-- from the shopping view html, you can print_r the $this->cart->contents() to see what codeignitor stores.
+------ during sessions .. you'll see all the products etc currently in cart  http://i.imgur.com/ustkZzA.jpg
 
